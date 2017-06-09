@@ -6,39 +6,42 @@
   # enough to change it
 
   # This function is called in your prompt to output your active git branch.
-  # function parse_git_branch {
-  #   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-  # }
+  function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  }
 
   # # This function builds your prompt. It is called below
-  # function prompt {
+  function prompt {
   #   # Define the prompt character
-  #   local   CHAR="♥"
+    local   CHAR="♥"
 
   #   # Define some local colors
-  #   local   RED="\[\e[0;31m\]"
-  #   local   BLUE="\[\e[0;34m\]"
-  #   local   GREEN="\[\e[0;32m\]"
-  #   local   GRAY_TEXT_BLUE_BACKGROUND="\[\e[37;44;1m\]"
+    local   RED="\[\e[0;31m\]"
+    local   BLUE="\[\e[0;34m\]"
+    local   GREEN="\[\e[0;32m\]"
+    local   GRAY_TEXT_BLUE_BACKGROUND="\[\e[37;44;1m\]"
 
   #   # Define a variable to reset the text color
-  #   local   RESET="\[\e[0m\]"
+    local   RESET="\[\e[0m\]"
 
   #   # ♥ ☆ - Keeping some cool ASCII Characters for reference
 
   #   # Here is where we actually export the PS1 Variable which stores the text for your prompt
   #   export PS1="\[\e]2;\u@\h\a[$GRAY_TEXT_BLUE_BACKGROUND\t$RESET]$RED\$(parse_git_branch) $GREEN\W\n$BLUE//$RED $CHAR $RESET"
-  #     PS2='> '
-  #     PS4='+ '
-  #   }
+
+
+      export PS1="\[\e[32;0m\]$GRAY_TEXT_BLUE_BACKGROUND\t$RESET: $GREEN\w$RESET :$RED\$(parse_git_branch) $GREEN@\u $RESET> \[\e[0m\]"
+      PS2='> '
+      PS4='+ '
+    }
 
   # # Finally call the function and our prompt is all pretty
-  # prompt
+  prompt
 
   # For more prompt coolness, check out Halloween Bash:
   # http://xta.github.io/HalloweenBash/
 
-    export PS1="\[\e[32;0m\]\t: \w @\u > \[\e[0m\]"
+
 
   # If you break your prompt, just delete the last thing you did.
   # And that's why it's good to keep your dotfiles in git too.
@@ -128,37 +131,40 @@
 # A function to extract correctly any archive based on extension
 # USE: extract imazip.zip
 #      extract imatar.tar
-# function extract () {
-#     if [ -f $1 ] ; then
-#         case $1 in
-#             *.tar.bz2)  tar xjf $1      ;;
-#             *.tar.gz)   tar xzf $1      ;;
-#             *.bz2)      bunzip2 $1      ;;
-#             *.rar)      rar x $1        ;;
-#             *.gz)       gunzip $1       ;;
-#             *.tar)      tar xf $1       ;;
-#             *.tbz2)     tar xjf $1      ;;
-#             *.tgz)      tar xzf $1      ;;
-#             *.zip)      unzip $1        ;;
-#             *.Z)        uncompress $1   ;;
-#             *)          echo "'$1' cannot be extracted via extract()" ;;
-#         esac
-#     else
-#         echo "'$1' is not a valid file"
-#     fi
-# }
+function extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar xjf $1      ;;
+            *.tar.gz)   tar xzf $1      ;;
+            *.bz2)      bunzip2 $1      ;;
+            *.rar)      rar x $1        ;;
+            *.gz)       gunzip $1       ;;
+            *.tar)      tar xf $1       ;;
+            *.tbz2)     tar xjf $1      ;;
+            *.tgz)      tar xzf $1      ;;
+            *.zip)      unzip $1        ;;
+            *.Z)        uncompress $1   ;;
+            *)          echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
 
 # Aliases
 # =====================
-  # LS
+  # misc
   alias ll="ls -lah"
   alias p="pwd"
   alias b="cd .."
   alias reload="source ~/.bash_profile"
   alias conf="subl ~/.bash_profile"
   alias here="open ."
+  alias sf="screenfetch -E"
+
 
   # Git
+  alias gitme="cd ~/Documents/GitHub/"
   alias gcl="git clone"
   alias gst="git status"
   alias gl="git pull"
