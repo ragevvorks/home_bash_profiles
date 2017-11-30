@@ -1,4 +1,3 @@
-# home_bash_profiles
-Temp storage for my home .bash_profile and homebrew hacks
+# home_dotfiles
 
-Testing commits and branch pull requests.
+Dennis Petkov's dotfiles. 
